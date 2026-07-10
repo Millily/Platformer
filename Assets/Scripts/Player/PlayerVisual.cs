@@ -3,10 +3,10 @@ using UnityEngine;
 [RequireComponent(typeof(Animator), typeof(SpriteRenderer))]
 public class PlayerVisual : MonoBehaviour
 {
+    private const string Speed = "Speed";
+
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
-
-    private const string Speed = "Speed";
 
     private void Awake()
     {

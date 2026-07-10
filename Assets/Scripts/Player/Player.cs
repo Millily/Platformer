@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(InputReader), typeof(Rigidbody2D))]
+[RequireComponent(typeof(InputReader), typeof(Rigidbody2D), typeof(Wallet))]
 [RequireComponent(typeof(Jumper), typeof(PlayerMovement), typeof(GroundChecker))]
 public class Player : MonoBehaviour
 {
@@ -25,6 +24,11 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         _inputReader.ButtonJumpPressed += OnJump;
+    }
+
+    private void OnDisable()
+    {
+        _inputReader.ButtonJumpPressed -= OnJump;
     }
 
     private void Update()
