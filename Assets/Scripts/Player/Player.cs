@@ -2,6 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(InputReader), typeof(Rigidbody2D), typeof(Wallet))]
 [RequireComponent(typeof(Jumper), typeof(PlayerMovement), typeof(GroundChecker))]
+[RequireComponent(typeof(Flipper))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerVisual _visualController;

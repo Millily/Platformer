@@ -3,7 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(Animator), typeof(SpriteRenderer))]
 public class PlayerVisual : MonoBehaviour
 {
-    private const string Speed = "Speed";
+    [SerializeField] private Flipper _flipper;
+
+    public readonly int Speed = Animator.StringToHash(nameof(Speed));
 
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -16,11 +18,7 @@ public class PlayerVisual : MonoBehaviour
 
     public void SetMovementState(float moveDirection)
     {
-        if (moveDirection < 0)
-            _spriteRenderer.flipX = true;
-        else if (moveDirection > 0)
-            _spriteRenderer.flipX = false;
-
+        _flipper.ChekFlip(moveDirection);
         _animator.SetFloat(Speed, Mathf.Abs(moveDirection));
     }
 }

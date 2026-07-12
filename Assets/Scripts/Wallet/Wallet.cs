@@ -3,15 +3,22 @@ using UnityEngine;
 
 public class Wallet : MonoBehaviour
 {
-    private int _amount = 0;
-
     public event Action<int> OnAmountChanged;
 
-    public int Amount => _amount;
+    public int Amount { get; private set; } = 0;
 
     public void AddCoin(int value)
     {
-        _amount += value;
-        OnAmountChanged?.Invoke(_amount);
+        Amount += value;
+        OnAmountChanged?.Invoke(Amount);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out Coin coin))
+        {
+            AddCoin(coin.Count);
+            Destroy(coin.gameObject);
+        }
     }
 }

@@ -4,14 +4,10 @@ public class Coin : MonoBehaviour
 {
     [SerializeField] private int _count = 1;
 
-    public int Count => _count;
+    public int Count { get; private set; }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Awake()
     {
-        if (collision.gameObject.TryGetComponent(out Wallet wallet))
-        {
-            wallet.AddCoin(_count);
-            Destroy(gameObject);
-        }
+        Count = _count;
     }
 }

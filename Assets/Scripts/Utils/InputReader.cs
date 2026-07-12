@@ -1,13 +1,9 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class InputReader : MonoBehaviour
 {
     private GameInput _gameInput;
-
-    private InputAction moveAction;
-    private InputAction jumpAction;
 
     public event Action ButtonJumpPressed;
 
@@ -16,8 +12,6 @@ public class InputReader : MonoBehaviour
     private void Awake()
     {
         _gameInput = new GameInput();
-        moveAction = _gameInput.FindAction("Move");
-        jumpAction = _gameInput.FindAction("Jump");
     }
 
     private void OnEnable()
@@ -32,9 +26,9 @@ public class InputReader : MonoBehaviour
 
     private void Update()
     {
-        Direction = moveAction.ReadValue<float>();
+        Direction = _gameInput.Gameplay.Move.ReadValue<float>();
 
-        if (jumpAction.IsPressed())
+        if (_gameInput.Gameplay.Jump.IsPressed())
         {
             ButtonJumpPressed?.Invoke();
         }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyMovement))]
+[RequireComponent(typeof(EnemyMovement), typeof(Flipper))]
 public class Enemy : MonoBehaviour
 {
     EnemyMovement _movement;
