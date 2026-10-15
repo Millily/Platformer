@@ -6,7 +6,7 @@ public class PlayerVisual : MonoBehaviour
     [SerializeField] private Flipper _flipper;
 
     public readonly int Speed = Animator.StringToHash(nameof(Speed));
-
+    public readonly int IsAttacking = Animator.StringToHash(nameof(IsAttacking));
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
 
@@ -18,7 +18,12 @@ public class PlayerVisual : MonoBehaviour
 
     public void SetMovementState(float moveDirection)
     {
-        _flipper.ChekFlip(moveDirection);
+        _flipper.CheckFlip(moveDirection);
         _animator.SetFloat(Speed, Mathf.Abs(moveDirection));
+    }
+
+    public void SetAttackState()
+    {
+        _animator.SetTrigger(IsAttacking);
     }
 }
